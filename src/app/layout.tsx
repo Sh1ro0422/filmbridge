@@ -1,8 +1,10 @@
 'use client'
 import './globals.css'
-import { Inter } from 'next/font/google'
+import './global.scss'
+import React from 'react'
 import { Zagvar, Tses, Carousel } from '@/components'
 import { usePathname } from 'next/navigation'
+import NewtreltContext from './NewtreltContext'
 
 export const metadata = {
   title: 'Create Next App',
@@ -21,18 +23,29 @@ export default function RootLayout({
     {slug: '/film', ner: 'Film'}
   ]
 
+  
 
   return (
     <html lang="en">
       <title>FilmBridge</title>
       <body className={`text-sm text-gray-700 dark:text-gray-100 max-h-screen min-h-screen overflow-auto bg-[#f5f5f5] dark:bg-[#252526] transition-all`}>
-        <Zagvar attribute="class" defaultTheme="dark">
-          <Tses jagsaalt={tsesJagsaalt}/>
-          <main className='w-full h-fit '>
-            {children}
-          </main>
-          {modal}
-        </Zagvar>
+        <NewtreltContext>
+          <Zagvar attribute="class" defaultTheme="dark">
+            {
+              zam.includes('dashboard') ? <>
+                {children}
+                {modal}
+              </> : <>
+                <Tses jagsaalt={tsesJagsaalt}/>
+                <main className='w-full h-fit '>
+                  {children}
+                </main>
+                {modal}
+              </>
+            }
+            
+          </Zagvar>
+        </NewtreltContext>
       </body>
     </html>
   )
