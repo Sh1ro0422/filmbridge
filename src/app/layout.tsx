@@ -1,7 +1,8 @@
+'use client'
 import './globals.css'
 import { Inter } from 'next/font/google'
-
-const inter = Inter({ subsets: ['latin'] })
+import { Zagvar, Tses, Carousel } from '@/components'
+import { usePathname } from 'next/navigation'
 
 export const metadata = {
   title: 'Create Next App',
@@ -9,13 +10,30 @@ export const metadata = {
 }
 
 export default function RootLayout({
-  children,
+  children, modal
 }: {
-  children: React.ReactNode
+  children: React.ReactNode,
+  modal: React.ReactNode
 }) {
+  const zam = usePathname()
+  const tsesJagsaalt = [
+    {slug: '/', ner: 'Home'},
+    {slug: '/film', ner: 'Film'}
+  ]
+
+
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <title>FilmBridge</title>
+      <body className={`text-sm text-gray-700 dark:text-gray-100 max-h-screen min-h-screen overflow-auto bg-[#f5f5f5] dark:bg-[#252526] transition-all`}>
+        <Zagvar attribute="class" defaultTheme="dark">
+          <Tses jagsaalt={tsesJagsaalt}/>
+          <main className='w-full h-fit '>
+            {children}
+          </main>
+          {modal}
+        </Zagvar>
+      </body>
     </html>
   )
 }
