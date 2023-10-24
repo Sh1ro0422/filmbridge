@@ -2,7 +2,7 @@
 'use client'
 import React from 'react'
 import { omdbApiCall, Carousel, clone, HomeList } from '@/components'
-
+import { motion, useScroll, useTransform, MotionValue } from 'framer-motion'
 let dummyJagsaalt:any[] = []
 const hoosonStateJagsaalt:any[] = []
 export default function Home() {
@@ -42,14 +42,23 @@ export default function Home() {
           setState(dummyJagsaalt)
       }
   }
+  // const { scrollY } = useScroll()
+  // const asdasd:MotionValue<number>[] = [
+  //   useTransform(scrollY, [0, 600], [1, 0.95]),
+  //   useTransform(scrollY, [800, 1700, 2200], [0.9, 1, 0.9]),
+  //   useTransform(scrollY, [1100, 1450, 1700], [0.9, 1, 0.9]),
+  //   useTransform(scrollY, [400, 650, 1100], [0.9, 1, 0.9]),
+  // ]
 
   return (
     <>
       <Carousel jagsaalt={state}/>
-      <HomeList title={`In Theater`}/>
-      <HomeList title={`Upcoming`}/>
-      <HomeList title={`Available Online`}/>
-      <div className='h-[200px] w-full'></div>
+      <div className='h-fit'>
+        <HomeList title={`In Theater`}/>
+        <HomeList title={`Upcoming`}/>
+        <HomeList title={`Available Online`}/>
+        <div className='h-[200px] w-full'></div>
+      </div>
     </>
   )
 }

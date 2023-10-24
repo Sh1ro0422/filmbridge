@@ -38,7 +38,6 @@ function HomeList({title}:{title:string}) {
             setState(dummyJagsaalt)
         }
     }
-    console.log(state)
     return <section className="container flex-col mx-auto mt-10 gap-4 h-fit">
         <div className='flex flex-row items-center justify-between mb-3 border-b-2 dark:border-gray-700'>
             <h2 className='text-2xl font-bold'>{title}</h2>

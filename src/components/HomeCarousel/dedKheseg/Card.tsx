@@ -18,7 +18,7 @@ const Card = forwardRef(({ ugugdul, index, itemIndex, itemSoliyo }: {ugugdul:any
     return (
         <motion.div
             ref={ref}
-            className="h-full relative w-full min-w-full scale-150 rounded transition-all duration-500 bg-fixed bg-cover"
+            className={`h-full relative w-full min-w-full scale-150 rounded transition-all !duration-1000 bg-fixed bg-cover ease-in-out ${itemIndex.get() === index ? '!scale-100' : '!scale-75'}`}
             transition={{type: 'spring', duration: 0.4}}
             drag="x"
             dragConstraints={{ left: 0, right: 0 }}
@@ -31,7 +31,7 @@ const Card = forwardRef(({ ugugdul, index, itemIndex, itemSoliyo }: {ugugdul:any
                 transform: itemIndex.get() === index ? "scale(1) !important" : "scale(0.9) !important"
             }}
         >
-            <div className="absolute z-10 w-full h-full left-0 top-0 bg-[#222222] bg-opacity-60 backdrop-blur"></div>
+            <div className="absolute z-10 w-full h-full left-0 top-0 bg-black bg-opacity-50 backdrop-blur-sm"></div>
         </motion.div>
     );
 });
@@ -39,3 +39,4 @@ const Card = forwardRef(({ ugugdul, index, itemIndex, itemSoliyo }: {ugugdul:any
 Card.displayName = "Card";
 
 export default Card;
+// bg-[#222222]
