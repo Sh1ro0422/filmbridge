@@ -1,8 +1,11 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 'use client'
 import React from 'react'
 import { onAuthStateChanged, getAuth } from 'firebase/auth'
 import { filmbridgeApp } from './firebase'
-import newtrekh from './serverActions/newtrekh'
+import newtrekh, { garakh } from './serverActions/newtrekh'
+import { useRouter } from 'next/navigation'
+import { Khuleelge } from '@/components/index'
 export const NewtreltCtx = React.createContext<unknown>(null)
 interface User {
     email:string | null,
@@ -14,6 +17,9 @@ interface Utga {
     password:string,
 }
 const auth = getAuth()
+
+export const useNewtrelt = () => React.useContext(NewtreltCtx)
+
 export default function NewtreltContext ({children}:{children:React.ReactNode}) {
     const [user, setUser] = React.useState<User | null>()
     const [newtresenEsekh, setNewtersenEsekh] = React.useState(false)
@@ -21,7 +27,7 @@ export default function NewtreltContext ({children}:{children:React.ReactNode}) 
         userName: '',
         password: ''
     })
-
+    const [loader, setLoader] = React.useState(true)
     React.useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (user) => {
             if (user) {
@@ -32,6 +38,7 @@ export default function NewtreltContext ({children}:{children:React.ReactNode}) 
             } else {
                 setUser(null);
             }
+            setLoader(false)
         });
 
         return () => unsubscribe();
@@ -54,7 +61,13 @@ export default function NewtreltContext ({children}:{children:React.ReactNode}) 
         })
     }
 
-    return <NewtreltCtx.Provider value={{user, newtrekhUtga, passwordUserNameAvya, newtrekhDarya}}>
-        {children}
+    const logOut = () => {
+        garakh()
+    }
+
+    return <NewtreltCtx.Provider value={{user, newtrekhUtga, passwordUserNameAvya, newtrekhDarya, logOut}}>
+        {
+            loader ? <Khuleelge/> : children
+        }
     </NewtreltCtx.Provider>
 }

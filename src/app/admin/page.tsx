@@ -22,7 +22,7 @@ export default function Page() {
         {
             loader ? <Khuleelge/> : <div className="left-0 top-0 w-screen h-screen bg-fixed bg-cover relative flex justify-center items-center overflow-hidden" style={{background: `url(${zurag.src})`}}>
                 <div className='absolute z-10 bg-black bg-opacity-90 w-full h-full left-0 top-0'/>
-                <div className=' absolute w-full h-full z-10 rounded-full' style={{boxShadow: 'inset 0px 0px 300px 300px #000', scale: '1.3'}}/>
+                <div className=' absolute w-full h-full z-10 rounded-full' style={{boxShadow: 'inset 0px 0px 200px 200px #000', scale: '1.3'}}/>
                 <div className='absolute w-[300px] flex flex-col gap-3 h-[300px] px-10 bg-black rounded z-30 bg-opacity-40 backdrop-blur-sm backdrop-brightness-20 backdrop-hue-rotate-30 backdrop-saturate-50 backdrop-brightness-30 items-center justify-center'>
                     <h2 className='text-2xl font-bold text-white z-30'>Нэвтрэх</h2>
                     <Input inputClass='text-lg' onChange={(utga:any) => {passwordUserNameAvya(utga, 'userName')}} placeholder='Username' value={newtrekhUtga.userName}/>

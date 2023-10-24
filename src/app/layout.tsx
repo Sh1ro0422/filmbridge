@@ -29,23 +29,22 @@ export default function RootLayout({
     <html lang="en">
       <title>FilmBridge</title>
       <body className={`text-sm text-gray-700 dark:text-gray-100 max-h-screen min-h-screen overflow-auto bg-[#f5f5f5] dark:bg-[#252526] transition-all`}>
-        <NewtreltContext>
           <Zagvar attribute="class" defaultTheme="dark">
-            {
-              zam.includes('dashboard') ? <>
-                {children}
-                {modal}
-              </> : <>
-                <Tses jagsaalt={tsesJagsaalt}/>
-                <main className='w-full h-fit '>
-                  {children}
-                </main>
-                {modal}
-              </>
-            }
-            
+            <NewtreltContext>
+                {
+                  zam.includes('dashboard') ? <>
+                    {children}
+                    {modal}
+                  </> : <>
+                    <Tses jagsaalt={tsesJagsaalt}/>
+                    <main className='w-full h-fit '>
+                      {children}
+                    </main>
+                    {modal}
+                  </>
+                }
+            </NewtreltContext>
           </Zagvar>
-        </NewtreltContext>
       </body>
     </html>
   )
