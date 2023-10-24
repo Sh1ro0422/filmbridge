@@ -5,7 +5,7 @@ import { onAuthStateChanged, getAuth } from 'firebase/auth'
 import { filmbridgeApp } from './firebase'
 import newtrekh, { garakh } from './serverActions/newtrekh'
 import { useRouter } from 'next/navigation'
-import { Khuleelge } from '@/components/index'
+import { Khuleelge, isNullOrUndefined } from '@/components/index'
 export const NewtreltCtx = React.createContext<unknown>(null)
 interface User {
     email:string | null,
@@ -51,18 +51,26 @@ export default function NewtreltContext ({children}:{children:React.ReactNode}) 
     }
 
     const newtrekhDarya = () => {
-        const test = newtrekh(newtrekhUtga?.userName, newtrekhUtga?.password)
-        console.log(test)
-        test.then(result => {
-            setUser({
-                email: result.khariu?.user.email,
-                loggedIn: true,
-            })
+        if(newtrekhUtga?.userName === '' || newtrekhUtga?.password === '') return alert('Newtrekh ner eswel password khooson bna')
+        newtrekh(newtrekhUtga?.userName, newtrekhUtga?.password).then(result => {
+            console.log("result ====>", result)
+            if(!isNullOrUndefined(result.khariu)) {
+                setUser({
+                    email: result.khariu?.user.email,
+                    loggedIn: true,
+                })
+            }
         })
     }
 
     const logOut = () => {
-        garakh()
+        setLoader(true)
+        garakh().then(result => {
+            console.log("logout result =======>", result)
+            setUser(null)
+        }).finally(() => {
+            setLoader(false)
+        })
     }
 
     return <NewtreltCtx.Provider value={{user, newtrekhUtga, passwordUserNameAvya, newtrekhDarya, logOut}}>

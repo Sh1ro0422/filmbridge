@@ -2,7 +2,7 @@
 'use client'
 import React from 'react'
 import { omdbApiCall, Carousel, clone, HomeList } from '@/components'
-import { motion, useScroll, useTransform, MotionValue } from 'framer-motion'
+import { Transition } from '@/components'
 let dummyJagsaalt:any[] = []
 const hoosonStateJagsaalt:any[] = []
 export default function Home() {
@@ -51,7 +51,7 @@ export default function Home() {
   // ]
 
   return (
-    <>
+    <Transition>
       <Carousel jagsaalt={state}/>
       <div className='h-fit'>
         <HomeList title={`In Theater`}/>
@@ -59,7 +59,7 @@ export default function Home() {
         <HomeList title={`Available Online`}/>
         <div className='h-[200px] w-full'></div>
       </div>
-    </>
+    </Transition>
   )
 }
 

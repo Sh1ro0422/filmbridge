@@ -6,7 +6,7 @@ const Dropdown = ({children, content}:{children:React.ReactNode, content:React.R
         {children}
         <AnimatePresence>
             <motion.div className='absolute'>
-
+                
             </motion.div>
         </AnimatePresence>
     </div>

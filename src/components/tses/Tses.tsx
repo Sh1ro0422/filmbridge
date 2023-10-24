@@ -18,9 +18,8 @@ const Tses = (props:Props) => {
     const [hover, setHover] = React.useState(null)
     const { jagsaalt } = props
     const zam = usePathname()
+    const { user, logOut } = useNewtrelt()
 
-    const { user } = useNewtrelt()
-    console.log('tses user ======>', user)
     React.useEffect(() => {
         document.addEventListener('scroll', scrollMedrey)
         return () => {
@@ -66,7 +65,7 @@ const Tses = (props:Props) => {
             <div className="flex flex-row gap-3 items-center min-h-full h-full">
                 {
                     user?.loggedIn && <Tooltip placement='left' title={user?.email}>
-                        <button className='text-xl'>
+                        <button className='text-xl' onClick={logOut}>
                             <Durs icon='carbon:user-avatar-filled-alt'/>
                         </button>
                     </Tooltip>
