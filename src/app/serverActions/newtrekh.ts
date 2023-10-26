@@ -3,7 +3,7 @@ import { filmbridgeApp } from "@/app/firebase";
 
 const auth = getAuth(filmbridgeApp)
 
-export default async function newtrekh(email:string, password:string) {
+export default async function newtrekh(email:string | undefined = '', password:string | undefined = '') {
     let khariu:any = null, aldaa:any = null
     try {
         khariu = await signInWithEmailAndPassword(auth, email, password)

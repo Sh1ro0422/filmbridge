@@ -13,8 +13,8 @@ interface User {
 }
 
 interface Utga {
-    userName:string,
-    password:string,
+    userName:string | undefined,
+    password:string | undefined,
 }
 const auth = getAuth()
 
